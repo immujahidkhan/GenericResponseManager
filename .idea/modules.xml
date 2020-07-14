@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GenericResponseExample.iml" filepath="$PROJECT_DIR$/.idea/modules/GenericResponseExample.iml" group="GenericResponseExample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GenericResponseRetrofit/GenericResponseRetrofit.iml" filepath="$PROJECT_DIR$/.idea/modules/GenericResponseRetrofit/GenericResponseRetrofit.iml" group="GenericResponseExample/GenericResponseRetrofit" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="GenericResponseExample/app" />
+    </modules>
+  </component>
+</project>

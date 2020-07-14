@@ -1,0 +1,3 @@
+include ':GenericResponseRetrofit'
+include ':app'
+rootProject.name = "GenericResponseExample"
