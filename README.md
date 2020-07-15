@@ -25,9 +25,7 @@ dependencies {
 ```
 
 
-## Usage
-
-
+## Usage GET Request
 
 ``` java
  Map<String, String> mapString = new HashMap<>();
@@ -36,6 +34,36 @@ dependencies {
         mapString.put("type", "passenger");
         mapString.put("device_token", "");
         new GenericResponseManager("http://baseurl/api/").getRequest(mapString, "languages", new onGenericResponseListener() {
+            @Override
+            public void onComplete() {
+                Timber.tag(TAG).d("Complete");
+                Toast.makeText(MainActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNext(String response) {
+                LanguageSelectionModel srt = new Gson().fromJson(response, LanguageSelectionModel.class);
+                Timber.tag(TAG).d(response);
+                textView.setText(srt.getData().toString());
+            }
+
+            @Override
+            public void onErrorBody(String response) {
+                Timber.tag(TAG).d("Error %s", response);
+            }
+        });
+```
+
+
+## Usage POST Request
+
+``` java
+ Map<String, String> mapString = new HashMap<>();
+        mapString.put("user_id", "29");
+        mapString.put("lang_id", "1");
+        mapString.put("type", "passenger");
+        mapString.put("device_token", "");
+        new GenericResponseManager("http://baseurl/api/").postRequest(mapString, "languages", new onGenericResponseListener() {
             @Override
             public void onComplete() {
                 Timber.tag(TAG).d("Complete");
