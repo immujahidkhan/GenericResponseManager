@@ -38,7 +38,7 @@ public class GenericResponseManager {
                 .subscribe(new Observer<Response>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        compositeDisposable.add(d);
+                        //compositeDisposable.add(d);
                     }
 
                     @Override
