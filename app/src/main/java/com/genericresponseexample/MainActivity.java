@@ -10,10 +10,16 @@ import android.widget.Toast;
 import com.genericresponseretrofit.GenericResponseManager;
 import com.genericresponseretrofit.onGenericResponseListener;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mapString.put("lang_id", "1");
         mapString.put("type", "passenger");
         mapString.put("device_token", "");
-        new GenericResponseManager("http://baseurl/api/").getRequest(mapString, "languages", new onGenericResponseListener() {
+        new GenericResponseManager("http://Link/api/").postRequest(mapString, "logout", new onGenericResponseListener() {
             @Override
             public void onComplete() {
                 Timber.tag(TAG).d("Complete");
@@ -40,14 +46,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(String response) {
-                LanguageSelectionModel srt = new Gson().fromJson(response, LanguageSelectionModel.class);
-                Timber.tag(TAG).d(response);
-                textView.setText(srt.getData().toString());
+            public void onNext(Response<?> response) {
+                Timber.tag(TAG).d(String.valueOf(response.body()));
+                String result = "" + response.body();
+                Timber.tag(TAG).d(result);
+                BaseModel baseModel = new Gson().fromJson(result, BaseModel.class);
+                textView.setText("Ok : " + baseModel.getMessage());
             }
 
             @Override
-            public void onErrorBody(String response) {
+            public void onErrorBody(ResponseBody response) {
                 Timber.tag(TAG).d("Error %s", response);
             }
         });

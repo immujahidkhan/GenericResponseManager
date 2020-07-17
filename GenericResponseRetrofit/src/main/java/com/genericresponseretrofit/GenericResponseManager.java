@@ -35,21 +35,21 @@ public class GenericResponseManager {
         apiRequests.dynamicPOSTResponse(endPoint, map)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response>() {
+                .subscribe(new Observer<Response<?>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        //compositeDisposable.add(d);
+
                     }
 
                     @Override
-                    public void onNext(Response response) {
+                    public void onNext(Response<?> response) {
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
-                                onGenericResponseListener.onNext(response.body().toString());
+                                onGenericResponseListener.onNext(response);
                             }
                         } else {
                             if (response.errorBody() != null) {
-                                onGenericResponseListener.onErrorBody(response.errorBody().toString());
+                                onGenericResponseListener.onErrorBody(response.errorBody());
                             }
                         }
                     }
@@ -71,21 +71,21 @@ public class GenericResponseManager {
         apiRequests.dynamicGETResponse(endPoint, map)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<Object>>() {
+                .subscribe(new Observer<Response<?>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Response<Object> response) {
+                    public void onNext(Response<?> response) {
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
-                                onGenericResponseListener.onNext(response.body().toString());
+                                onGenericResponseListener.onNext(response);
                             }
                         } else {
                             if (response.errorBody() != null) {
-                                onGenericResponseListener.onErrorBody(response.errorBody().toString());
+                                onGenericResponseListener.onErrorBody(response.errorBody());
                             }
                         }
                     }

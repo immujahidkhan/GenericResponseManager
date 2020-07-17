@@ -1,5 +1,7 @@
 package com.genericresponseretrofit;
 
+import com.google.gson.JsonElement;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -18,10 +20,10 @@ public interface APIRequests {
      **/
     @FormUrlEncoded
     @POST
-    Observable<Response<Object>> dynamicPOSTResponse(@Url String endPoint, @FieldMap Map<String, String> map);
+    Observable<Response<JsonElement>> dynamicPOSTResponse(@Url String endPoint, @FieldMap Map<String, String> map);
 
     @GET
-    Observable<Response<Object>> dynamicGETResponse(@Url String endPoint, @QueryMap Map<String, String> map);
+    Observable<Response<JsonElement>> dynamicGETResponse(@Url String endPoint, @QueryMap Map<String, String> map);
 
     /**
      * --------------------------------------------------DYNAMIC METHOD FOR GETTING RESPONSE---------------------------------------------------------
