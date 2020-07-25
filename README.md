@@ -20,7 +20,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 ```gradle
 dependencies {
 	...
-		   implementation 'com.github.immujahidkhan:GenericResponseManager:v1.0'
+		   implementation 'com.github.immujahidkhan:GenericResponseManager:v1.2'
 }
 ```
 
@@ -33,7 +33,7 @@ dependencies {
         mapString.put("lang_id", "1");
         mapString.put("type", "passenger");
         mapString.put("device_token", "");
-        new GenericResponseManager("http://baseurl/api/").getRequest(mapString, "languages", new onGenericResponseListener() {
+         new GenericResponseManager("http://Link/api/").postRequest(mapString, "logout", new onGenericResponseListener() {
             @Override
             public void onComplete() {
                 Timber.tag(TAG).d("Complete");
@@ -41,14 +41,16 @@ dependencies {
             }
 
             @Override
-            public void onNext(String response) {
-                LanguageSelectionModel srt = new Gson().fromJson(response, LanguageSelectionModel.class);
-                Timber.tag(TAG).d(response);
-                textView.setText(srt.getData().toString());
+            public void onNext(Response<?> response) {
+                Timber.tag(TAG).d(String.valueOf(response.body()));
+                String result = "" + response.body();
+                Timber.tag(TAG).d(result);
+                BaseModel baseModel = new Gson().fromJson(result, BaseModel.class);
+                textView.setText("Ok : " + baseModel.getMessage());
             }
 
             @Override
-            public void onErrorBody(String response) {
+            public void onErrorBody(ResponseBody response) {
                 Timber.tag(TAG).d("Error %s", response);
             }
         });
