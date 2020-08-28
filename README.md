@@ -21,6 +21,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 dependencies {
 	...
 		   implementation 'com.github.immujahidkhan:GenericResponseManager:v1.2'
+		   implementation 'com.squareup.retrofit2:retrofit:2.7.2'
 }
 ```
 
