@@ -1,4 +1,4 @@
-# GenericResponseManager
+# GenericResponseManager - Android Retrofit Generic Response
 
 ## Prerequisites
 
